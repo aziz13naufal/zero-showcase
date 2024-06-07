@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect } from 'react'
-import { products } from '@/utils/products'
+import { products } from '@/utils/productList'
 import Product from '@/app/components/product/product'
 
 const ProductPage = ({ params }: any) => {

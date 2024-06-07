@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 // types
-import { products } from '@/utils/products'
+import { products } from '@/utils/productList'
 import { ProductType } from '@/types/product-type'
 
 // components
@@ -11,6 +11,14 @@ import { Image } from 'antd';
 
 
 const Product = ({ title, description, price, color, links, images }: ProductType) => {
+    const formattedPrice = typeof price === 'number'
+        ? new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0
+        }).format(price)
+        : price;
+
     return (
         <div className='w-full h-screen flex flex-col sm:flex-row'>
             {/* product image */}
@@ -38,7 +46,7 @@ const Product = ({ title, description, price, color, links, images }: ProductTyp
                 ))}
 
                 {/* price */}
-                <span className='text-3xl font-semibold text-red-700'>Rp {price}</span>
+                <span className='text-3xl font-semibold text-red-700'>{formattedPrice}</span>
 
                 {/* color */}
                 <div className='flex flex-col items-start gap-3 mt-[3vh]'>
@@ -46,7 +54,7 @@ const Product = ({ title, description, price, color, links, images }: ProductTyp
 
                     <div className="flex flex-col items-center w-fit h-fit">
                         <div className="p-2 border-2 rounded-full w-fit h-fit">
-                            <div className={`w-5 h-5 bg-white rounded-full drop-shadow bg-[${color?.hex}]`}></div>
+                            <div className={`w-5 h-5 rounded-full ${color?.hex && 'bg-[' + color?.hex + ']'} drop-shadow`}></div>
                         </div>
 
                         <span className='text-sm text-zinc-500'>{color?.name}</span>
