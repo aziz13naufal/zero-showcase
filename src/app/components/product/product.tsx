@@ -18,7 +18,10 @@ const Product = ({ title, description, price, color, links, images }: ProductTyp
                 <Carousel arrows infinite={false}>
                     {images?.map((item: any, index: any) => (
                         <div key={index}>
-                            <Image src={item} className="w-full object-contain sm:h-dvh text-white flex items-center justify-center bg-black/20" />
+                            {/* <Image src={item} className="w-full object-contain sm:h-dvh text-white flex items-center justify-center bg-black/20" /> */}
+                            <h3 className="w-full h-fit sm:h-dvh text-white flex items-center justify-center bg-black/20">
+                                <Image src={item} className="" />
+                            </h3>
                         </div>
                     ))}
                 </Carousel>
